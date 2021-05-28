@@ -1,7 +1,7 @@
 public class Gtk4Demo.MainWindow : Gtk.ApplicationWindow {
 
     public MainWindow (Gtk.Application app) {
-        Object (application: app);
+        Object (application: app, title: "Headerbar Example");
 
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("/github/aeldemery/testheaderbar/Styles/Headerbar.css");
