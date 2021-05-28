@@ -12,17 +12,6 @@ public class Gtk4Demo.MainWindow : Gtk.ApplicationWindow {
         header_bar.add_css_class ("titlebar");
         this.set_titlebar(header_bar);
 
-        var header_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        header_box.add_css_class ("titlebar");
-        header_box.add_css_class ("header-bar");
-        header_box.margin_bottom = header_box.margin_end = header_box.margin_start = header_box.margin_top = 10;
-        var label = new Gtk.Label ("Label");
-        header_box.append (label);
-        var level_bar = new Gtk.LevelBar ();
-        level_bar.value = 0.4;
-        level_bar.hexpand = true;
-        header_box.append (level_bar);
-    
         var file_chooser_btn = new Gtk.Button.from_icon_name ("bookmark-new-symbolic");
         header_bar.pack_start (file_chooser_btn);
         file_chooser_btn.clicked.connect (() => {
@@ -40,8 +29,22 @@ public class Gtk4Demo.MainWindow : Gtk.ApplicationWindow {
             this.close ();
         });
 
+        var header_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        header_box.add_css_class ("titlebar");
+        header_box.add_css_class ("header-bar");
+        with (header_box) {
+            margin_bottom = margin_end = margin_start = margin_top = 10;
+        }
+        
+        var label = new Gtk.Label ("Label");
+        header_box.append (label);
+
+        var level_bar = new Gtk.LevelBar ();
+        level_bar.value = 0.4;
+        level_bar.hexpand = true;
+        header_box.append (level_bar);        
+
         var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        this.child = vbox;
 
         var content_img = new Gtk.Image.from_icon_name ("start-here-symbolic");
         content_img.pixel_size = 512;
@@ -69,5 +72,7 @@ public class Gtk4Demo.MainWindow : Gtk.ApplicationWindow {
         });
         footer.pack_end (fullscreen_btn);
         vbox.append (footer);
+
+        this.child = vbox;
     }
 }
