@@ -15,9 +15,9 @@ public class Gtk4Demo.MainWindow : Gtk.ApplicationWindow {
         var file_chooser_btn = new Gtk.Button.from_icon_name ("bookmark-new-symbolic");
         header_bar.pack_start (file_chooser_btn);
         file_chooser_btn.clicked.connect (() => {
-            var chooser = new Gtk.FileChooserDialog ("Open Chooser Test", this, Gtk.FileChooserAction.OPEN, "Choose", "Discard");
+            var chooser = new Gtk.FileChooserNative ("Open Chooser Test", this, Gtk.FileChooserAction.OPEN, "Choose", "Discard");
             chooser.response.connect ((response_id) => {
-                chooser.close ();
+                chooser.destroy ();
             });
             chooser.show ();
         });
